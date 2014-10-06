@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://www.netbeans.org/ns/project/1">
+    <type>org.netbeans.modules.ant.freeform</type>
+    <configuration>
+        <general-data xmlns="http://www.netbeans.org/ns/freeform-project/1">
+            <!-- Do not use Project Properties customizer when editing this file manually. -->
+            <name>GEVAv2</name>
+            <properties/>
+            <folders>
+                <source-folder>
+                    <label>GEVA/src</label>
+                    <type>java</type>
+                    <location>GEVA/src</location>
+                </source-folder>
+                <source-folder>
+                    <label>GUI/src</label>
+                    <type>java</type>
+                    <location>GUI/src</location>
+                </source-folder>
+            </folders>
+            <ide-actions>
+                <action name="clean">
+                    <target>clean</target>
+                </action>
+                <action name="test">
+                    <target>test</target>
+                </action>
+                <action name="run">
+                    <target>all</target>
+                </action>
+                <action name="build">
+                    <target>noDocs</target>
+                </action>
+                <action name="rebuild">
+                    <target>clean</target>
+                    <target>noDocs</target>
+                </action>
+                <action name="run.single">
+                    <script>nbproject/ide-file-targets.xml</script>
+                    <target>run-selected-file-in-src</target>
+                    <context>
+                        <property>run.class</property>
+                        <folder>GEVA/src</folder>
+                        <pattern>\.java$</pattern>
+                        <format>java-name</format>
+                        <arity>
+                            <one-file-only/>
+                        </arity>
+                    </context>
+                </action>
+            </ide-actions>
+            <view>
+                <items>
+                    <source-folder style="packages">
+                        <label>GEVA/src</label>
+                        <location>GEVA/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>GUI/src</label>
+                        <location>GUI/src</location>
+                    </source-folder>
+                    <source-file>
+                        <location>build.xml</location>
+                    </source-file>
+                </items>
+                <context-menu>
+                    <ide-action name="build"/>
+                    <ide-action name="rebuild"/>
+                    <ide-action name="clean"/>
+                    <ide-action name="run"/>
+                    <ide-action name="test"/>
+                </context-menu>
+            </view>
+            <subprojects/>
+        </general-data>
+        <java-data xmlns="http://www.netbeans.org/ns/freeform-project-java/1">
+            <compilation-unit>
+                <package-root>GEVA/src</package-root>
+                <classpath mode="compile">bin/lib/jsci/jsci-core.jar;bin/lib/jsci/jsci-xtra.jar;bin/lib/bsf/bsf-2.4.0.jar;bin/lib/antlr/antlr-2.7.7.jar;bin/lib/asm/asm-3.2.jar;bin/lib/commons-logging/commons-logging-1.1.1.jar;bin/lib/groovy/groovy-1.7.6.jar;bin/lib/jscheme/jscheme-7.2.jar</classpath>
+                <source-level>1.5</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>GUI/src</package-root>
+                <source-level>1.5</source-level>
+            </compilation-unit>
+        </java-data>
+    </configuration>
+</project>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="geva_rc1" default="noDocs">
+
+    <property name="geva" value="GEVA"/>
+    <property name="gui" value="GUI"/>
+
+    <target name="all" depends="build,test" description="compile, test, clean_source"/>
+    <target name="allnotest" depends="build" description="all, with test removed"/>
+
+    <!-- Run a clean compile of GEVA and GEVA_GUI, this also does JavaDocs -->
+    <target name="compile" description="Run a clean compile of GEVA and GEVA_GUI">
+        <!-- compile geva -->
+        <ant dir="${geva}" target="dist"/>
+        <!-- compile gui -->
+        <ant dir="${gui}" target="dist"/>
+    </target>
+
+    <!-- Run a clean compile of GEVA and GEVA_GUI no JavaDocs -->
+    <target name="noDocs" depends="clean" description="No docs">
+        <!-- compile geva -->
+        <ant dir="${geva}" target="jar"/>
+        <!-- compile gui -->
+        <ant dir="${gui}" target="jar"/>
+
+      <copy todir="bin" >
+	<fileset dir="${geva}/dist" defaultexcludes="yes" >
+	  <include name="*.jar" />
+	</fileset>
+	<fileset dir="${geva}" defaultexcludes="yes" >
+	  <include name="lib/**" />
+	</fileset>
+	<fileset dir="${gui}" defaultexcludes="yes" >
+	  <include name="lib/**" />
+	</fileset>
+	<fileset dir="${gui}/dist" defaultexcludes="yes" >
+	  <include name="*.jar" />
+	</fileset>
+      </copy>
+
+	<!-- Create GEVA_GUI.jar -->
+	<jar jarfile="GEVA_GUI.jar" basedir=".">
+	 <include name="bin/GUI.jar"/>
+	 <manifest>
+	 <attribute name="Built-By" value="${user.name}"/>
+	 <attribute name="URL" value="http://ncra.ucd.ie"/>
+	 <attribute name="Main-Class" value="UI.GEVAPropertiesGUI"/>
+	 <attribute name="Class-Path" value="bin/GUI.jar"/> 
+	 </manifest>
+	</jar>
+    </target>
+
+    <!-- Copy the jars and libs to bin -->
+    <target name="build" depends="compile" description="Copy the jars and libs to bin">
+      <copy todir="bin" >
+	<fileset dir="${geva}/dist" defaultexcludes="yes" >
+	  <include name="*.jar" />
+	</fileset>
+	<fileset dir="${geva}" defaultexcludes="yes" >
+	  <include name="lib/**" />
+	</fileset>
+	<fileset dir="${gui}" defaultexcludes="yes" >
+	  <include name="lib/**" />
+	</fileset>
+	<fileset dir="${gui}/dist" defaultexcludes="yes" >
+	  <include name="*.jar" />
+	</fileset>
+      </copy>
+
+	<!-- Create GEVA_GUI.jar -->
+	<jar jarfile="GEVA_GUI.jar" basedir=".">
+	 <include name="bin/GUI.jar"/>
+	 <manifest>
+	 <attribute name="Built-By" value="${user.name}"/>
+	 <attribute name="URL" value="http://ncra.ucd.ie"/>
+	 <attribute name="Main-Class" value="UI.GEVAPropertiesGUI"/>
+	 <attribute name="Class-Path" value="bin/GUI.jar"/> 
+	 </manifest>
+	</jar>
+    </target>
+      
+    <!-- Run automatic tests -->
+    <target name="test" description="Run automatic tests">
+        <!-- test geva -->
+        <ant dir="${geva}" target="test"/>
+
+        <exec executable="sh">
+            <arg value="testBuild.sh"/>
+        </exec>
+    </target>
+
+    <!-- Clean out intermediate files used for building GEVA and GEVA_GUI -->
+    <target name="clean"
+        description="Clean out intermediate files used for building GEVA and GEVA_GUI">
+        <!-- compile geva -->
+        <ant dir="${geva}" target="clean"/>
+        <!-- compile gui -->
+        <ant dir="${gui}" target="clean"/>
+    </target>
+
+</project>

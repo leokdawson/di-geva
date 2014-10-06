@@ -1,0 +1,4 @@
+<pattern> ::= <salvo> | <salvo>;<pattern>
+<salvo> ::= <pos>, <pos>, <size>
+<pos> ::= <GECodonValue[0,9]>
+<size> ::= <GECodonValue[1,5]>
